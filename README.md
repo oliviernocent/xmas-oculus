@@ -62,6 +62,7 @@ document.querySelector('#box1').addEventListener('collide', (e) => {
 });
 </script>
 ```
+Try the [DEMO](https://oliviernocent.github.io/xmas-oculus/grab.html)
 
 ## Moving a `dynamic-body` using constraints
 
@@ -82,6 +83,45 @@ attribute. The dynamic object is then linked to the anchor using the `constraint
     constraint="type: distance; target: #anchor1; distance: 0.001; collideConnected: false">
 </a-sphere>
 ```
+Try the [DEMO](https://oliviernocent.github.io/xmas-oculus/collide.html)
 
 ## Random animations
+
+You can assign several animations to a given object with the attributes `animation`, 
+`animation__2`, `animation__3`, ... But if you want to trigger animations randomly, 
+you have to add a bit of JavaScript to your HTML document.
+
+```html
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        let cube = document.querySelector('#cube');
+
+        function applyAnimation() {
+            // Pick a random number in {0, 1, 2}
+            let c = Math.floor(Math.random() * 3);
+            // Assign two animations to the object with id="#cube" according to the random number c
+            switch (c) {
+                case 0:
+                    cube.setAttribute('animation', 'property: position; from: 0 1.5 -1; to: 0 2.5 -1; dur: 1500; easing: easeInOutCubic');
+                    cube.setAttribute('animation__2', 'property: position; from: 0 2.5 -1; to: 0 1.5 -1; dur: 1500; easing: easeInOutCubic; delay: 1500');
+                    break;
+                case 1:
+                    cube.setAttribute('animation', 'property: opacity; from: 1; to: 0; dur: 1500; easing: easeInOutCubic');
+                    cube.setAttribute('animation__2', 'property: opacity; from: 0; to: 1; dur: 1500; easing: easeInOutCubic; delay: 1500');
+                    break;
+                case 2:
+                    cube.setAttribute('animation', 'property: rotation; from: 0 0 0; to: 0 360 0; dur: 1500; easing: easeInOutCubic');
+                    cube.setAttribute('animation__2', 'property: rotation; from: 0 0 0; to: 360 0 0; dur: 1500; easing: easeInOutCubic; delay: 1500');
+                    break;
+            }
+        }
+
+        // Apply a new animation every 4 seconds
+        window.setInterval(applyAnimation, 4000);
+    });
+</script>
+```
+
+Try the [DEMO](https://oliviernocent.github.io/xmas-oculus/random.html)
+
 

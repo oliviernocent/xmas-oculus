@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Xmas</title>
+    <meta name="description" content="Spring is coming!" />
+    <!-- A-Frame JavaScript library -->
+    <script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>
+    <!-- A-Frame physics system -->
+    <script
+        src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js"></script>
+    <!-- A-Frame extras -->
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
+</head>
+
+<body>
+    <a-scene physics="gravity: 0" renderer="antialias: true">
+        <a-assets>
+            <img id="hardwood" src="images/hardwood-floor.jpg">
+            <img id="wallpaper" src="images/stripe-wallpaper.jpeg">
+            <img id="angry" src="images/angry.jpg">
+            <img id="rude" src="images/rude.png">
+            <img id="check" src="images/check.png">
+            <img id="busy" src="images/macbook.png">
+            <a-asset-item id="tree" src="models/tree/scene.gltf"></a-asset-item>
+            <a-asset-item id="fireplace" src="models/fireplace/scene.gltf"></a-asset-item>
+        </a-assets>
+
+        <!-- Left hand -->
+        <a-entity id="leftController" static-body="shape: sphere; sphereRadius: 0.02;"
+            oculus-touch-controls="hand: left" sphere-collider="objects: .throwable" grab>
+        </a-entity>
+
+        <!-- Right hand -->
+        <a-entity id="rightController" static-body="shape: sphere; sphereRadius: 0.02;"
+            oculus-touch-controls="hand: right" sphere-collider="objects: .throwable" grab>
+        </a-entity>
+
+        <a-box id="cube" position="0 1.5 -1" width="0.3" height="0.3" depth="0.3" color="#4CC3D9">
+        </a-box>
+
+        <!-- Ground -->
+        <a-plane static-body rotation="-90 0 0" width="8" height="8" src="#hardwood" repeat="4 4" roughness="0.7"
+            metalness="0.3">
+        </a-plane>
+
+        <!-- Walls -->
+        <a-plane static-body position="0 1.5 -4" width="8" height="3" src="#wallpaper" repeat="8 3" roughness="1"
+            metalness="0">
+        </a-plane>
+        <a-box position="0 0.06 -4" width="8" height="0.12" depth="0.02" color="white" roughness="1" metalness="0">
+        </a-box>
+
+        <a-plane static-body position="0 1.5 4" rotation="0 180 0" width="8" height="3" src="#wallpaper" repeat="8 3"
+            roughness="1" metalness="0">
+        </a-plane>
+        <a-box position="0 0.06 4" width="8" height="0.12" depth="0.02" color="white" roughness="1" metalness="0">
+        </a-box>
+
+        <a-plane static-body position="-4 1.5 0" rotation="0 90 0" width="8" height="3" src="#wallpaper" repeat="8 3"
+            roughness="1" metalness="0">
+        </a-plane>
+        <a-box position="-4 0.06 0" width="0.02" height="0.12" depth="8" color="white" roughness="1" metalness="0">
+        </a-box>
+
+        <a-plane static-body position="4 1.5 0" rotation="0 -90 0" width="8" height="3" src="#wallpaper" repeat="8 3"
+            roughness="1" metalness="0">
+        </a-plane>
+        <a-box position="4 0.06 0" width="0.02" height="0.12" depth="8" color="white" roughness="1" metalness="0">
+        </a-box>
+
+        <!-- Ceiling -->
+        <a-plane static-body position="0 3 0" rotation="90 0 0" width="8" height="8" color="white" roughness="1"
+            metalness="0"></a-plane>
+
+        <!-- Christmas tree -->
+        <a-gltf-model static-body="shape: box" src="#tree" position="-2.644 0 -2.777" rotation="0 -152 0"
+            scale="0.8 0.8 0.8"></a-gltf-model>
+        <a-gltf-model static-body="shape: box" src="#fireplace" position="2.638 0 -3.382" rotation="0 -9.512 0"
+            scale="0.03 0.03 0.03">
+        </a-gltf-model>
+
+        <a-circle src="#rude" radius="0.5" position="1.82715 1.89076 3.98" rotation="0 180 0"></a-circle>
+        <a-ring radius-inner="0.48" radius-outer="0.52" position="1.82715 1.89076 3.97" rotation="0 180 0"
+            color="#ebc356" metalness="0.75" roughness="0.5"></a-ring>
+        <a-circle src="#check" radius="0.5" position="0.72226 1.52811 3.98" rotation="0 180 0"></a-circle>
+        <a-ring radius-inner="0.48" radius-outer="0.52" position="0.72226 1.52811 3.97" rotation="0 180 0"
+            color="#ebc356" metalness="0.75" roughness="0.5"></a-ring>
+        <a-circle src="#angry" radius="0.5" position="-0.41231 1.98922 3.98" rotation="0 180 0"></a-circle>
+        <a-ring radius-inner="0.48" radius-outer="0.52" position="-0.41231 1.98922 3.97" rotation="0 180 0"
+            color="#ebc356" metalness="0.75" roughness="0.5"></a-ring>
+        <a-circle src="#busy" radius="0.5" position="-1.44021 1.42999 3.98" rotation="0 180 0"></a-circle>
+        <a-ring radius-inner="0.48" radius-outer="0.52" position="-1.44021 1.42999 3.97" rotation="0 180 0"
+            color="#ebc356" metalness="0.75" roughness="0.5"></a-ring>
+
+        <!-- Lights -->
+        <a-entity light="type: ambient; color: white; intensity: 0.5"></a-entity>
+        <a-entity light="type: point; color: white; intensity: 0.3" position="0 1.5 0"></a-entity>
+        <a-entity light="type: point; color: yellow; intensity: 1; distance: 1.5" position="-2.644 0.5 -2.777">
+        </a-entity>
+        <a-entity light="type: point; color: pink; intensity: 1; distance: 1.5" position="-2.644 1.7 -2.777"></a-entity>
+
+        <a-camera position="0 1.7 0">
+        </a-camera>
+    </a-scene>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            let cube = document.querySelector('#cube');
+
+            function applyAnimation() {
+                // Pick a random number in {0, 1, 2}
+                let c = Math.floor(Math.random() * 3);
+                // Assign two animations to the object with id="#cube" according to the random number c
+                switch (c) {
+                    case 0:
+                        cube.setAttribute('animation', 'property: position; from: 0 1.5 -1; to: 0 2.5 -1; dur: 1500; easing: easeInOutCubic');
+                        cube.setAttribute('animation__2', 'property: position; from: 0 2.5 -1; to: 0 1.5 -1; dur: 1500; easing: easeInOutCubic; delay: 1500');
+                        break;
+                    case 1:
+                        cube.setAttribute('animation', 'property: opacity; from: 1; to: 0; dur: 1500; easing: easeInOutCubic');
+                        cube.setAttribute('animation__2', 'property: opacity; from: 0; to: 1; dur: 1500; easing: easeInOutCubic; delay: 1500');
+                        break;
+                    case 2:
+                        cube.setAttribute('animation', 'property: rotation; from: 0 0 0; to: 0 360 0; dur: 1500; easing: easeInOutCubic');
+                        cube.setAttribute('animation__2', 'property: rotation; from: 0 0 0; to: 360 0 0; dur: 1500; easing: easeInOutCubic; delay: 1500');
+                        break;
+                }
+            }
+
+            // Apply a new animation every 4 seconds
+            window.setInterval(applyAnimation, 4000);
+        });
+    </script>
+</body>
+
+</html>
