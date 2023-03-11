@@ -27,14 +27,26 @@
         </a-assets>
 
         <!-- Left hand -->
+        <a-entity
+            id="leftController" hand-controls="hand: left; handModelStyle: highPoly; color: #ffffff"
+            static-body="shape: sphere; sphereRadius: 0.02;" sphere-collider="objects: .throwable" grab>
+        </a-entity>
+        <!--
         <a-entity id="leftController" static-body="shape: sphere; sphereRadius: 0.02;"
             oculus-touch-controls="hand: left" sphere-collider="objects: .throwable" grab>
         </a-entity>
-
+        -->
+        
         <!-- Right hand -->
+        <a-entity
+            id="rightController" hand-controls="hand: right; handModelStyle: highPoly; color: #ffffff"
+            static-body="shape: sphere; sphereRadius: 0.02;" sphere-collider="objects: .throwable" grab>
+        </a-entity>
+        <!--
         <a-entity id="rightController" static-body="shape: sphere; sphereRadius: 0.02;"
             oculus-touch-controls="hand: right" sphere-collider="objects: .throwable" grab>
         </a-entity>
+        -->
 
         <a-sphere id="sphere1" class="throwable" dynamic-body position="-0.5 0.11 -0.5" radius="0.10" color="#4CC3D9">
         </a-sphere>
