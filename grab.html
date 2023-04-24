@@ -29,7 +29,8 @@
         </a-assets>
 
         <!-- Left hand -->
-        <a-entity hand-tracking-controls="hand: left"></a-entity>
+        <a-entity id="leftController" hand-tracking-controls="hand: left"
+            static-body="shape: sphere; sphereRadius: 0.02;" sphere-collider="objects: .throwable" grab></a-entity>
         <!--
         <a-entity
             id="leftController" hand-controls="hand: left; handModelStyle: highPoly; color: #ffffff"
@@ -41,7 +42,8 @@
         -->
 
         <!-- Right hand -->
-        <a-entity hand-tracking-controls="hand: right"></a-entity>
+        <a-entity id="rightController" hand-tracking-controls="hand: right"
+            static-body="shape: sphere; sphereRadius: 0.02;" sphere-collider="objects: .throwable" grab></a-entity>
         <!--
         <a-entity
             id="rightController" hand-controls="hand: right; handModelStyle: highPoly; color: #ffffff"
