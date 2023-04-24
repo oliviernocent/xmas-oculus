@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <title>Xmas</title>
     <!-- A-Frame JavaScript library -->
-    <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
     <!-- A-Frame extras -->
     <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.0.0/dist/aframe-extras.min.js"></script>
     <!-- A-Frame physics system -->
@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <a-scene physics="gravity: -2; restitution: 0.1" renderer="antialias: true">
+    <a-scene physics="gravity: -2; restitution: 0.1" shadow="type: pcfsoft" renderer="antialias: true">
         <a-assets>
             <img id="hardwood" src="images/hardwood-floor.jpg">
             <img id="wallpaper" src="images/stripe-wallpaper.jpeg">
@@ -29,15 +29,16 @@
         </a-assets>
 
         <!-- Left hand -->
-        <!--
+
         <a-entity
             id="leftController" hand-controls="hand: left; handModelStyle: highPoly; color: #ffffff"
             static-body="shape: sphere; sphereRadius: 0.02;" sphere-collider="objects: .throwable" grab>
         </a-entity>
-        -->
+        <!--
         <a-entity id="leftController" static-body="shape: sphere; sphereRadius: 0.02;"
             oculus-touch-controls="hand: left" sphere-collider="objects: .throwable" grab>
         </a-entity>
+        -->
 
         <!-- Right hand -->
         <!--
@@ -57,7 +58,7 @@
             shadow="cast: true; receive: true">
         </a-sphere>
 
-        <a-box id="box1" static-body="shape: box" position="0.8 0 1" height="0.3" color="#4CC3D9"
+        <a-box id="box1" static-body="shape: box" position="0.8 0 1" rotation=" 0 45 0" height="0.3" color="#4CC3D9"
             shadow="cast: true; receive: true"></a-box>
         <a-box id="box2" static-body="shape: box" position="-0.8 0 1" height="0.3" color="#FFC65D"
             shadow="cast: true; receive: true"></a-box>
@@ -98,12 +99,12 @@
         </a-box>
 
         <!-- Christmas tree -->
-        <a-gltf-model static-body="shape: box" src="#tree" position="-2.644 0 -2.777" rotation="0 -152 0"
-            scale="0.8 0.8 0.8"></a-gltf-model>
-        <a-gltf-model static-body="shape: box" src="#fireplace" position="2.638 0 -3.382" rotation="0 -9.512 0"
-            scale="0.03 0.03 0.03">
-        </a-gltf-model>
+        <a-gltf-model src="#tree" position="-2.644 0 -2.777" rotation="0 -152 0" scale="0.8 0.8 0.8" ></a-gltf-model>
+        <a-box position="-2.899 1.074 -2.832" scale="1.73 2.12 1.229" opacity="0" static-body="shape: box"></a-box>
+        <a-gltf-model src="#fireplace" position="2.638 0 -3.382" rotation="0 -9.512 0" scale="0.03 0.03 0.03"></a-gltf-model>
+        <a-box position="3.70369 0.52811 -3.75149" rotation="0 -42.045 0" scale="1.49602 1.5363 1.229" opacity="0" static-body="shape: box"></a-box>
 
+        <!-- Hall of Fame -->
         <a-circle src="#rude" radius="0.5" position="1.82715 1.89076 3.94" rotation="0 180 0">
             <a-ring radius-inner="0.48" radius-outer="0.52" position="0 0 0.01" color="#ebc356" metalness="0.75"
                 roughness="0.5"></a-ring>
@@ -154,7 +155,7 @@
 
                 scene.appendChild(gift);
 
-                if (++giftCount < 50) window.setTimeout(giftAvalanche, 150);
+                if (++giftCount < 30) window.setTimeout(giftAvalanche, 150);
             }
 
             document.querySelector('#box1').addEventListener('collide', (e) => {
