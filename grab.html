@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <a-scene physics renderer="antialias: true">
+    <a-scene physics="gravity: -5; restitution: 0.1" renderer="antialias: true">
         <a-assets>
             <img id="hardwood" src="images/hardwood-floor.jpg">
             <img id="wallpaper" src="images/stripe-wallpaper.jpeg">
@@ -123,7 +123,7 @@
 
         <!-- Lights -->
         <a-entity light="type: ambient; color: white; intensity: 0.5"></a-entity>
-        <a-entity light="type: point; color: white; intensity: 0.3; castShadow: true;" position="0 1.5 0"></a-entity>
+        <a-entity light="type: point; color: white; intensity: 0.3; castShadow: true;" position="0 2.7 0"></a-entity>
         <a-entity light="type: point; color: yellow; intensity: 1; distance: 1.5;"
             position="-2.644 0.5 -2.777">
         </a-entity>
@@ -146,10 +146,10 @@
                 gift.setAttribute('width', size);
                 gift.setAttribute('height', size);
                 gift.setAttribute('depth', size);
-                gift.setAttribute('color', 'hsl(' + Math.random() * 360 + ', 90%, 70%)');
+                gift.setAttribute('color', `hsl(${Math.random() * 360}, 90%, 70%)`);
                 gift.setAttribute('shadow', 'cast: true; receive: true');
-                gift.setAttribute('position', (Math.random() * 2 - 1) + ' 2.6 ' + (Math.random() * 2 - 1));
-                gift.setAttribute('dynamic-body', 'shape: box; mass: 0.1;');
+                gift.setAttribute('position', `${Math.random() * 2 - 1} 2.6 ${Math.random() * 2 - 1}`);
+                gift.setAttribute('dynamic-body', `shape: box; mass: ${size/2}`);
                 gift.classList.add('throwable');
 
                 scene.appendChild(gift);
