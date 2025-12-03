@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Marker Based AR</title>
+  <!-- A-Frame JavaScript library -->
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <!-- AR.js JavaScript library for A-Frame -->
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+</head>
+
+<body>
+  <a-scene embedded
+    arjs="sourceType: webcam; debugUIEnabled: true; detectionMode: mono_and_matrix; matrixCodeType: 3x3;">
+    <a-assets>
+      <a-asset-item id="tent" src="tent.glb"></a-asset-item>
+    </a-assets>
+    <a-marker type="barcode" value="7">
+      <a-gltf-model src="#tent" position="0 0 0" rotation="0 0 0" scale="10 10 10"></a-gltf-model>
+      <a-entity text="value: Une tente;"></a-entity>
+    </a-marker>
+
+    <a-entity camera></a-entity>
+  </a-scene>
+</body>
+
+</html>
