@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="a hierarchy of geometric primitives">
+  <meta name="keywords" content="Virtual Reality, A-Frame">
+  <meta name="author" content="Olivier Nocent">
+  <title>A-Frame: 3D models</title>
+  <!-- A-Frame JavaScript library -->
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
+</head>
+
+<body>
+  <a-scene>
+    <a-assets>
+      <video id="sky" loop src="Pebbly_Beach_Headland.mp4"></video>
+    </a-assets>
+
+    <a-box id="play" position="0 1.5 -2" color="#FFC65D" event-set__click="_event: click; opacity: 0" event-set__click2="_event: click; _target: #cursor; opacity: 0"></a-box>
+    <a-videosphere src="#sky"></a-videosphere>
+
+    <a-camera>
+      <a-cursor id="cursor"></a-cursor>
+    </a-camera>
+  </a-scene>
+
+  <script>
+    play.addEventListener("click", () => { sky.play(); });
+  </script>
+</body>
+
+</html>
