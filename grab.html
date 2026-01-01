@@ -15,6 +15,7 @@
         src="https://cdn.jsdelivr.net/gh/c-frame/aframe-physics-system@v4.2.4/dist/aframe-physics-system.min.js"></script>
     <!-- Event set component -->
     <script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script>
+    <script src="grab-ammo.js"></script>
 </head>
 
 <body>
@@ -31,26 +32,19 @@
         </a-assets>
 
         <!-- Left hand -->
-        <a-entity id="leftHand" hand-tracking-grab-controls="hand: left; hoverEnabled: true;"></a-entity>
-        <!--
         <a-entity id="leftController" hand-controls="hand: left; handModelStyle: highPoly; color: #ffffff"
-            static-body="shape: sphere; sphereRadius: 0.02;" sphere-collider="objects: .throwable" grab>
+            ammo-body="type: dynamic" ammo-shape="type: sphere; sphereRadius: 0.02" sphere-collider="objects: .grabbable" grab-ammo>
         </a-entity>
-        -->
 
         <!-- Right hand -->
-        <a-entity id="rightHand" hand-tracking-grab-controls="hand: right; hoverEnabled: true;"></a-entity>
-        <!--
-        <a-entity id="rightController"
-            hand-controls="hand: right; handModelStyle: highPoly; color: rgba(255,255,255,0.4)"
-            static-body="shape: sphere; sphereRadius: 0.02;" sphere-collider="objects: .throwable" grab>
+        <a-entity id="rightController" hand-controls="hand: right; handModelStyle: highPoly; color: #ffffff"
+            ammo-body="type: dynamic" ammo-shape="type: sphere; sphereRadius: 0.02" sphere-collider="objects: .grabbable" grab-ammo>
         </a-entity>
-        -->
 
-        <a-sphere id="sphere1" class="throwable" ammo-body="type: dynamic" ammo-shape="type: sphere"
+        <a-sphere id="sphere1" class="grabbable" ammo-body="type: dynamic" ammo-shape="type: sphere"
             position="-0.5 0.11 -0.5" radius="0.10" color="#4CC3D9" shadow="cast: true; receive: true">
         </a-sphere>
-        <a-sphere id="sphere2" class="throwable" ammo-body="type: dynamic" ammo-shape="type: sphere"
+        <a-sphere id="sphere2" class="grabbable" ammo-body="type: dynamic" ammo-shape="type: sphere"
             position="0.5 0.11 -0.5" radius="0.10" color="#FFC65D" shadow="cast: true; receive: true">
         </a-sphere>
 
@@ -159,7 +153,7 @@
                 gift.setAttribute('position', `${Math.random() * 2 - 1} 2.6 ${Math.random() * 2 - 1}`);
                 gift.setAttribute('ammo-body', `type: dynamic; mass: ${size / 2}`);
                 gift.setAttribute('ammo-shape', 'type: box');
-                gift.setAttribute('grabbable', 'type: box');
+                gift.classList.add('grabbable');
 
                 scene.appendChild(gift);
 
