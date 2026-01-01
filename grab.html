@@ -31,6 +31,7 @@
         </a-assets>
 
         <!-- Left hand -->
+        <a-entity id="leftHand" hand-tracking-grab-controls="hand: left; hoverEnabled: true;"></a-entity>
         <!--
         <a-entity id="leftController" hand-controls="hand: left; handModelStyle: highPoly; color: #ffffff"
             static-body="shape: sphere; sphereRadius: 0.02;" sphere-collider="objects: .throwable" grab>
@@ -38,6 +39,7 @@
         -->
 
         <!-- Right hand -->
+        <a-entity id="rightHand" hand-tracking-grab-controls="hand: right; hoverEnabled: true;"></a-entity>
         <!--
         <a-entity id="rightController"
             hand-controls="hand: right; handModelStyle: highPoly; color: rgba(255,255,255,0.4)"
@@ -128,7 +130,9 @@
 
         <!-- Lights -->
         <a-entity light="type: ambient; color: white; intensity: 0.3"></a-entity>
-        <a-entity light="type: point; color: white; intensity: 2.8; castShadow: true; shadowMapWidth: 2048; shadowMapHeight: 2048" position="0 2.7 0"></a-entity>
+        <a-entity
+            light="type: point; color: white; intensity: 2.8; castShadow: true; shadowMapWidth: 2048; shadowMapHeight: 2048"
+            position="0 2.7 0"></a-entity>
         <a-entity light="type: point; color: yellow; intensity: 1; distance: 1.5;" position="-2.644 0.5 -2.777">
         </a-entity>
         <a-entity light="type: point; color: pink; intensity: 1; distance: 1.5" position="-2.644 1.7 -2.777"></a-entity>
@@ -155,7 +159,7 @@
                 gift.setAttribute('position', `${Math.random() * 2 - 1} 2.6 ${Math.random() * 2 - 1}`);
                 gift.setAttribute('ammo-body', `type: dynamic; mass: ${size / 2}`);
                 gift.setAttribute('ammo-shape', 'type: box');
-                gift.classList.add('throwable');
+                gift.setAttribute('grabbable', 'type: box');
 
                 scene.appendChild(gift);
 
