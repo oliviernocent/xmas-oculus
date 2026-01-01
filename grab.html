@@ -33,12 +33,12 @@
 
         <!-- Left hand -->
         <a-entity id="leftController" hand-controls="hand: left; handModelStyle: highPoly; color: #ffffff"
-            ammo-body="type: dynamic" ammo-shape="type: sphere; sphereRadius: 0.02" sphere-collider="objects: .grabbable" grab-ammo>
+            ammo-body="type: static" ammo-shape="type: sphere; sphereRadius: 0.02" sphere-collider="objects: .grabbable" grab-ammo>
         </a-entity>
 
         <!-- Right hand -->
         <a-entity id="rightController" hand-controls="hand: right; handModelStyle: highPoly; color: #ffffff"
-            ammo-body="type: dynamic" ammo-shape="type: sphere; sphereRadius: 0.02" sphere-collider="objects: .grabbable" grab-ammo>
+            ammo-body="type: static" ammo-shape="type: sphere; sphereRadius: 0.02" sphere-collider="objects: .grabbable" grab-ammo>
         </a-entity>
 
         <a-sphere id="sphere1" class="grabbable" ammo-body="type: dynamic" ammo-shape="type: sphere"
