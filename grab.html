@@ -5,18 +5,20 @@
     <meta charset="utf-8">
     <title>Xmas</title>
     <!-- A-Frame JavaScript library -->
-    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
     <!-- A-Frame extras -->
     <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.0.0/dist/aframe-extras.min.js"></script>
+    <!-- Ammo.js -->
+    <script src="https://cdn.jsdelivr.net/gh/MozillaReality/ammo.js@8bbc0ea/builds/ammo.wasm.js"></script>
     <!-- A-Frame physics system -->
     <script
-        src="https://cdn.jsdelivr.net/gh/c-frame/aframe-physics-system@v4.2.2/dist/aframe-physics-system.min.js"></script>
+        src="https://cdn.jsdelivr.net/gh/c-frame/aframe-physics-system@v4.2.4/dist/aframe-physics-system.min.js"></script>
     <!-- Event set component -->
     <script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script>
 </head>
 
 <body>
-    <a-scene physics="gravity: -2; restitution: 0.1" shadow="type: pcfsoft" renderer="antialias: true">
+    <a-scene physics="driver: ammo; debug: false; debugDrawMode: 1;" shadow="type: pcfsoft" renderer="antialias: true">
         <a-assets>
             <img id="hardwood" src="images/hardwood-floor.jpg">
             <img id="wallpaper" src="images/stripe-wallpaper.jpeg">
@@ -30,86 +32,81 @@
 
         <!-- Left hand -->
         <!--
-        <a-entity id="leftController" hand-tracking-controls="hand: left"
-            static-body="shape: sphere; sphereRadius: 0.02;" sphere-collider="objects: .throwable" grab></a-entity>
-        -->
-        <a-entity
-            id="leftController" hand-controls="hand: left; handModelStyle: highPoly; color: #ffffff"
+        <a-entity id="leftController" hand-controls="hand: left; handModelStyle: highPoly; color: #ffffff"
             static-body="shape: sphere; sphereRadius: 0.02;" sphere-collider="objects: .throwable" grab>
-        </a-entity>
-        <!--
-        <a-entity id="leftController" static-body="shape: sphere; sphereRadius: 0.02;"
-            oculus-touch-controls="hand: left" sphere-collider="objects: .throwable" grab>
         </a-entity>
         -->
 
         <!-- Right hand -->
         <!--
-        <a-entity id="rightController" hand-tracking-controls="hand: right"
-            static-body="shape: sphere; sphereRadius: 0.02;" sphere-collider="objects: .throwable" grab></a-entity>
-        -->
-        <a-entity
-            id="rightController" hand-controls="hand: right; handModelStyle: highPoly; color: rgba(255,255,255,0.4)"
+        <a-entity id="rightController"
+            hand-controls="hand: right; handModelStyle: highPoly; color: rgba(255,255,255,0.4)"
             static-body="shape: sphere; sphereRadius: 0.02;" sphere-collider="objects: .throwable" grab>
         </a-entity>
-        <!--
-        <a-entity id="rightController" static-body="shape: sphere; sphereRadius: 0.02;"
-            oculus-touch-controls="hand: right" sphere-collider="objects: .throwable" grab>
-        </a-entity>
         -->
 
-        <a-sphere id="sphere1" class="throwable" dynamic-body position="-0.5 0.11 -0.5" radius="0.10" color="#4CC3D9"
-            shadow="cast: true; receive: true">
+        <a-sphere id="sphere1" class="throwable" ammo-body="type: dynamic" ammo-shape="type: sphere"
+            position="-0.5 0.11 -0.5" radius="0.10" color="#4CC3D9" shadow="cast: true; receive: true">
         </a-sphere>
-        <a-sphere id="sphere2" class="throwable" dynamic-body position="0.5 0.11 -0.5" radius="0.10" color="#FFC65D"
-            shadow="cast: true; receive: true">
+        <a-sphere id="sphere2" class="throwable" ammo-body="type: dynamic" ammo-shape="type: sphere"
+            position="0.5 0.11 -0.5" radius="0.10" color="#FFC65D" shadow="cast: true; receive: true">
         </a-sphere>
 
-        <a-box id="box1" static-body="shape: box" position="0.8 0 1" rotation=" 0 45 0" height="0.3" color="#4CC3D9"
-            shadow="cast: true; receive: true"></a-box>
-        <a-box id="box2" static-body="shape: box" position="-0.8 0 1" height="0.3" color="#FFC65D"
-            shadow="cast: true; receive: true"></a-box>
+        <a-box id="box1" ammo-body="type: static" ammo-shape="type: box" position="0.8 0 1" rotation=" 0 45 0"
+            height="0.3" color="#4CC3D9" shadow="cast: true; receive: true"></a-box>
+        <a-box id="box2" ammo-body="type: static" ammo-shape="type: box" position="-0.8 0 1" height="0.3"
+            color="#FFC65D" shadow="cast: true; receive: true"></a-box>
 
         <!-- Ground -->
-        <a-box static-body="shape: box" rotation="-90 0 0" width="8" height="8" depth="0.1"
+        <a-box ammo-body="type: static" ammo-shape="type: box" rotation="-90 0 0" width="8" height="8" depth="0.1"
             material="src: #hardwood; repeat: 4 4; roughness: 0.7; metalness: 0.3;" shadow="cast: false; receive: true">
         </a-box>
 
         <!-- Walls -->
-        <a-box static-body="shape: box" position="0 1.5 -4" width="8" height="3" depth="0.1" src="#wallpaper"
-            repeat="8 3" roughness="1" metalness="0" shadow="cast: false; receive: true">
-        </a-box>
-        <a-box position="0 0.06 -4" width="8" height="0.12" depth="0.12" color="white" roughness="1" metalness="0" shadow="cast: false; receive: true">
-        </a-box>
-
-        <a-box static-body="shape: box" position="0 1.5 4" rotation="0 180 0" width="8" height="3" depth="0.1"
+        <a-box ammo-body="type: static" ammo-shape="type: box" position="0 1.5 -4" width="8" height="3" depth="0.1"
             src="#wallpaper" repeat="8 3" roughness="1" metalness="0" shadow="cast: false; receive: true">
         </a-box>
-        <a-box position="0 0.06 4" width="8" height="0.12" depth="0.12" color="white" roughness="1" metalness="0" shadow="cast: false; receive: true">
+        <a-box position="0 0.06 -4" width="8" height="0.12" depth="0.12" color="white" roughness="1" metalness="0"
+            shadow="cast: false; receive: true">
         </a-box>
 
-        <a-box static-body="shape: box" position="-4 1.5 0" rotation="0 90 0" width="8" height="3" depth="0.1"
-            src="#wallpaper" repeat="8 3" roughness="1" metalness="0" shadow="cast: false; receive: true">
+        <a-box ammo-body="type: static" ammo-shape="type: box" position="0 1.5 4" rotation="0 180 0" width="8"
+            height="3" depth="0.1" src="#wallpaper" repeat="8 3" roughness="1" metalness="0"
+            shadow="cast: false; receive: true">
         </a-box>
-        <a-box position="-4 0.06 0" width="0.12" height="0.12" depth="8" color="white" roughness="1" metalness="0" shadow="cast: false; receive: true">
+        <a-box position="0 0.06 4" width="8" height="0.12" depth="0.12" color="white" roughness="1" metalness="0"
+            shadow="cast: false; receive: true">
         </a-box>
 
-        <a-box static-body="shape: box" position="4 1.5 0" rotation="0 -90 0" width="8" height="3" depth="0.1"
-            src="#wallpaper" repeat="8 3" roughness="1" metalness="0" shadow="cast: false; receive: true">
+        <a-box ammo-body="type: static" ammo-shape="type: box" position="-4 1.5 0" rotation="0 90 0" width="8"
+            height="3" depth="0.1" src="#wallpaper" repeat="8 3" roughness="1" metalness="0"
+            shadow="cast: false; receive: true">
         </a-box>
-        <a-box position="4 0.06 0" width="0.12" height="0.12" depth="8" color="white" roughness="1" metalness="0" shadow="cast: false; receive: true">
+        <a-box position="-4 0.06 0" width="0.12" height="0.12" depth="8" color="white" roughness="1" metalness="0"
+            shadow="cast: false; receive: true">
+        </a-box>
+
+        <a-box ammo-body="type: static" ammo-shape="type: box" position="4 1.5 0" rotation="0 -90 0" width="8"
+            height="3" depth="0.1" src="#wallpaper" repeat="8 3" roughness="1" metalness="0"
+            shadow="cast: false; receive: true">
+        </a-box>
+        <a-box position="4 0.06 0" width="0.12" height="0.12" depth="8" color="white" roughness="1" metalness="0"
+            shadow="cast: false; receive: true">
         </a-box>
 
         <!-- Ceiling -->
-        <a-box static-body="shape: box" position="0 3 0" rotation="90 0 0" width="8" height="8" depth="0.1"
-            color="white" roughness="1" metalness="0" shadow="cast: false; receive: true">
+        <a-box ammo-body="type: static" ammo-shape="type: box" position="0 3 0" rotation="90 0 0" width="8" height="8"
+            depth="0.1" color="white" roughness="1" metalness="0" shadow="cast: false; receive: true">
         </a-box>
 
         <!-- Christmas tree -->
-        <a-gltf-model src="#tree" position="-2.644 0 -2.777" rotation="0 -152 0" scale="0.8 0.8 0.8" ></a-gltf-model>
-        <a-box position="-2.899 1.074 -2.832" scale="1.73 2.12 1.229" opacity="0" static-body="shape: box"></a-box>
-        <a-gltf-model src="#fireplace" position="2.638 0 -3.382" rotation="0 -9.512 0" scale="0.03 0.03 0.03"></a-gltf-model>
-        <a-box position="3.70369 0.52811 -3.75149" rotation="0 -42.045 0" scale="1.49602 1.5363 1.229" opacity="0" static-body="shape: box"></a-box>
+        <a-gltf-model src="#tree" position="-2.644 0 -2.777" rotation="0 -152 0" scale="0.8 0.8 0.8"></a-gltf-model>
+        <a-box ammo-body="type: static" ammo-shape="type: box" position="-2.899 1.074 -2.832" scale="1.73 2.12 1.229"
+            opacity="0"></a-box>
+        <a-gltf-model src="#fireplace" position="2.638 0 -3.382" rotation="0 -9.512 0"
+            scale="0.03 0.03 0.03"></a-gltf-model>
+        <a-box ammo-body="type: static" ammo-shape="type: box" position="3.70369 0.52811 -3.75149"
+            rotation="0 -42.045 0" scale="1.49602 1.5363 1.229" opacity="0"></a-box>
 
         <!-- Hall of Fame -->
         <a-circle src="#rude" radius="0.5" position="1.82715 1.89076 3.94" rotation="0 180 0">
@@ -130,10 +127,9 @@
         </a-circle>
 
         <!-- Lights -->
-        <a-entity light="type: ambient; color: white; intensity: 0.5"></a-entity>
-        <a-entity light="type: point; color: white; intensity: 0.3; castShadow: true;" position="0 2.7 0"></a-entity>
-        <a-entity light="type: point; color: yellow; intensity: 1; distance: 1.5;"
-            position="-2.644 0.5 -2.777">
+        <a-entity light="type: ambient; color: white; intensity: 0.3"></a-entity>
+        <a-entity light="type: point; color: white; intensity: 2.8; castShadow: true; shadowMapWidth: 2048; shadowMapHeight: 2048" position="0 2.7 0"></a-entity>
+        <a-entity light="type: point; color: yellow; intensity: 1; distance: 1.5;" position="-2.644 0.5 -2.777">
         </a-entity>
         <a-entity light="type: point; color: pink; intensity: 1; distance: 1.5" position="-2.644 1.7 -2.777"></a-entity>
 
@@ -157,14 +153,16 @@
                 gift.setAttribute('color', `hsl(${Math.random() * 360}, 90%, 70%)`);
                 gift.setAttribute('shadow', 'cast: true; receive: true');
                 gift.setAttribute('position', `${Math.random() * 2 - 1} 2.6 ${Math.random() * 2 - 1}`);
-                gift.setAttribute('dynamic-body', `shape: box; mass: ${size/2}`);
+                gift.setAttribute('ammo-body', `type: dynamic; mass: ${size / 2}`);
+                gift.setAttribute('ammo-shape', 'type: box');
                 gift.classList.add('throwable');
 
                 scene.appendChild(gift);
 
-                if (++giftCount < 30) window.setTimeout(giftAvalanche, 150);
+                if (++giftCount < 100) window.setTimeout(giftAvalanche, 150);
             }
 
+            /*
             document.querySelector('#box1').addEventListener('collide', (e) => {
                 if (e.detail.body.el.id === 'sphere1') {
                     e.detail.target.el.setAttribute('visible', 'false');
@@ -182,6 +180,9 @@
                     if (++score === 2) giftAvalanche();
                 }
             });
+            */
+
+            window.setTimeout(giftAvalanche, 5000);
         });
     </script>
 </body>
