@@ -67,7 +67,22 @@ AFRAME.registerComponent('grab-ammo', {
     if (hitEl.is(this.GRABBED_STATE) || !this.grabbing || this.hitEl) { return; }
     hitEl.addState(this.GRABBED_STATE);
     this.hitEl = hitEl;
-    this.constraint = new Ammo.btPoint2PointConstraint(this.el.body, hitEl.body);
+
+    const bodyTransform = this.el.body
+      .getCenterOfMassTransform()
+      .inverse()
+      .op_mul(hitEl.body.getWorldTransform());
+    const targetTransform = new Ammo.btTransform();
+    targetTransform.setIdentity();
+
+    this.constraint = new Ammo.btGeneric6DofConstraint(this.el.body, hitEl.body, bodyTransform, targetTransform, true);
+    const zero = new Ammo.btVector3(0, 0, 0);
+    //TODO: allow these to be configurable
+    this.this.constraint.setLinearLowerLimit(zero);
+    this.constraint.setLinearUpperLimit(zero);
+    this.constraint.setAngularLowerLimit(zero);
+    this.constraint.setAngularUpperLimit(zero);
+    Ammo.destroy(zero);
     this.system.addConstraint(this.constraint);
   }
 });
